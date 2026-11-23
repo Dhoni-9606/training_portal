@@ -1,45 +1,11 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Courses | Training Portal</title>
-    <style>
-        :root { --navy:#172554; --blue:#2563eb; --muted:#64748b; --border:#e2e8f0; --light:#eff6ff; --white:#fff; }
-        * { box-sizing:border-box; }
-        body { margin:0; font-family:Arial, Helvetica, sans-serif; color:#1e293b; background:#f8fafc; }
-        .navbar { height:72px; display:flex; align-items:center; justify-content:space-between; padding:0 7%; background:var(--white); border-bottom:1px solid var(--border); }
-        .brand { color:var(--navy); font-size:20px; font-weight:700; text-decoration:none; }
-        .nav-links { display:flex; gap:24px; }
-        .nav-links a { color:#334155; font-weight:600; text-decoration:none; }
-        .nav-links a:hover, .nav-links a.active { color:var(--blue); }
-        .page-header { padding:48px 7%; background:linear-gradient(135deg,#eff6ff,#dbeafe); }
-        .page-header h1 { margin:0 0 8px; color:var(--navy); font-size:42px; }
-        .page-header p { margin:0; color:var(--muted); font-size:17px; }
-        .container { max-width:1180px; margin:0 auto; padding:48px 24px 72px; }
-        .toolbar { display:flex; align-items:center; justify-content:space-between; margin-bottom:22px; }
-        .count { color:var(--muted); }
-        .count strong { color:var(--navy); }
-        .course-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
-        .course-card { overflow:hidden; background:var(--white); border:1px solid var(--border); border-radius:14px; box-shadow:0 8px 24px rgba(15,23,42,.05); }
-        .course-banner { height:8px; background:linear-gradient(90deg,var(--blue),#60a5fa); }
-        .course-body { padding:24px; }
-        .course-icon { width:48px; height:48px; display:grid; place-items:center; margin-bottom:18px; border-radius:12px; color:var(--blue); background:var(--light); font-size:22px; }
-        .course-card h2 { margin:0 0 10px; color:var(--navy); font-size:21px; }
-        .course-card p { min-height:66px; margin:0 0 18px; color:var(--muted); line-height:1.55; }
-        .course-footer { display:flex; justify-content:space-between; padding-top:16px; border-top:1px solid var(--border); color:#475569; font-size:14px; }
-        .duration { color:var(--blue); font-weight:700; }
-        .empty { grid-column:1/-1; padding:50px 20px; background:var(--white); border:1px dashed #cbd5e1; border-radius:14px; color:var(--muted); text-align:center; }
-        footer { padding:24px; color:#cbd5e1; background:var(--navy); text-align:center; }
-        @media(max-width:900px) { .course-grid { grid-template-columns:repeat(2,1fr); } }
-        @media(max-width:600px) {
-            .navbar { height:auto; align-items:flex-start; gap:16px; flex-direction:column; padding:18px 5%; }
-            .nav-links { width:100%; justify-content:space-between; gap:8px; }
-            .page-header { padding:38px 5%; }
-            .page-header h1 { font-size:34px; }
-            .course-grid { grid-template-columns:1fr; }
-        }
-    </style>
+    <link rel="stylesheet" href="{% static 'css/courses.css' %}">
 </head>
 <body>
     <nav class="navbar" aria-label="Main navigation">

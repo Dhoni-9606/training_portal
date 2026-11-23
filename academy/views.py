@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Course,Trainer,Student
+from .forms import StudentForm
 
 # Create your views here.
 
@@ -25,6 +26,20 @@ def student(request):
         'students':students
     }
     return render(request,'students.html',context)
+
+def enroll(request):
+    if request.method == 'POST':
+               form = StudentForm(request.POST,request.FILES)
+               if form.is_valid():
+                   form.save()
+               else:
+                    print(form.errors)
+    form = StudentForm()
+    context = {
+            'form':form, }
+    return render(request, 'enroll.html',context)
+
+
 
 
 

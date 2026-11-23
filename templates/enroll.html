@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>enroll students</title>
+</head>
+<body>
+    <h1>this enrollment page</h1>
+    <form action="{% url 'enroll' %}" method="POST" enctype="multipart/form-data" style="text-align: left; width: 500px;margin:auto">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">Enroll</button>
+    </form>
+</body>
+</html>
