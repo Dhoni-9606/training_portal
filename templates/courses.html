@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>these are the courses are avilable in our portal</h1>
+<table >
+  <thead>
+    <tr>
+    <th>course_name</th>
+    <th>course_discriptions</th>
+    <th>course_duration</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+    {% for c in courses %}
+    <td>{{c.course_name}}</td>
+    <td>{{c.description}}</td>
+    <td>{{c.duration}}</td>
+    </tr>
+    {% endfor %}
+   
+  </tbody>
+</table>
+
+</body>
+</html>

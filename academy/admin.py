@@ -6,7 +6,7 @@ class CourseAdmin(admin.ModelAdmin):
         list_display=('course_name','description','duration')
 
 class TrainerAdmin(admin.ModelAdmin):
-        list_display=('first_name','last_name','email','expertise')
+        list_display=('full_name','email','expertise')
 
 class StudentAdmin(admin.ModelAdmin):
         list_display=('first_name','last_name','email','enrolled_courese','trainer')
