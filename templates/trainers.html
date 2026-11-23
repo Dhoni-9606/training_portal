@@ -3,25 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Trainers | Training Portal</title>
+    <style>
+        :root { --navy:#172554; --blue:#2563eb; --muted:#64748b; --border:#e2e8f0; --light:#eff6ff; --white:#fff; }
+        * { box-sizing:border-box; }
+        body { margin:0; font-family:Arial, Helvetica, sans-serif; color:#1e293b; background:#f8fafc; }
+        .navbar { height:72px; display:flex; align-items:center; justify-content:space-between; padding:0 7%; background:var(--white); border-bottom:1px solid var(--border); }
+        .brand { color:var(--navy); font-size:20px; font-weight:700; text-decoration:none; }
+        .nav-links { display:flex; gap:24px; }
+        .nav-links a { color:#334155; font-weight:600; text-decoration:none; }
+        .nav-links a:hover,.nav-links a.active { color:var(--blue); }
+        .page-header { padding:48px 7%; background:linear-gradient(135deg,#eff6ff,#dbeafe); }
+        .page-header h1 { margin:0 0 8px; color:var(--navy); font-size:42px; }
+        .page-header p { margin:0; color:var(--muted); font-size:17px; }
+        .container { max-width:1180px; margin:0 auto; padding:48px 24px 72px; }
+        .trainer-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+        .trainer-card { background:var(--white); border:1px solid var(--border); border-radius:14px; box-shadow:0 8px 24px rgba(15,23,42,.05); text-align:center; }
+        .trainer-top { height:90px; border-radius:14px 14px 0 0; background:linear-gradient(135deg,#bfdbfe,#eff6ff); }
+        .avatar { width:82px; height:82px; display:grid; place-items:center; margin:-41px auto 14px; border:5px solid var(--white); border-radius:50%; color:var(--white); background:var(--blue); font-size:28px; font-weight:700; }
+        .avatar img { width:72px; height:72px; border-radius:50%; object-fit:cover; }
+        .trainer-body { padding:0 24px 24px; }
+        .trainer-card h2 { margin:0 0 7px; color:var(--navy); font-size:21px; }
+        .expertise { display:inline-block; margin-bottom:14px; padding:6px 10px; border-radius:999px; color:var(--blue); background:var(--light); font-size:13px; font-weight:700; }
+        .email { display:block; overflow-wrap:anywhere; color:var(--muted); font-size:14px; text-decoration:none; }
+        .email:hover { color:var(--blue); }
+        .empty { grid-column:1/-1; padding:50px 20px; border:1px dashed #cbd5e1; border-radius:14px; color:var(--muted); text-align:center; }
+        footer { padding:24px; color:#cbd5e1; background:var(--navy); text-align:center; }
+        @media(max-width:900px) { .trainer-grid { grid-template-columns:repeat(2,1fr); } }
+        @media(max-width:600px) {
+            .navbar { height:auto; align-items:flex-start; gap:16px; flex-direction:column; padding:18px 5%; }
+            .nav-links { width:100%; justify-content:space-between; gap:8px; }
+            .page-header { padding:38px 5%; }
+            .page-header h1 { font-size:34px; }
+            .trainer-grid { grid-template-columns:1fr; }
+        }
+    </style>
 </head>
 <body>
-    <h1>this trainers list of our training portal</h1>
-    <table >
-  <thead>
-    <tr>
-    <th>NAME</th>
-    <th>EMAIL</th>
-    <th>EXPERTISE</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-    {% for t in trainers %}
-    <td>{{t.full_name}}</td>
-    <td>{{t.email}}</td>
-    <td>{{t.expertise}}</td>
-    </tr>
-    {% endfor %}
+    <nav class="navbar" aria-label="Main navigation">
+        <a class="brand" href="{% url 'home' %}">Training Portal</a>
+        <div class="nav-links">
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'course' %}">Courses</a>
+            <a class="active" href="{% url 'trainer' %}">Trainers</a>
+            <a href="{% url 'student' %}">Students</a>
+        </div>
+    </nav>
+    <header class="page-header">
+        <h1>Meet Our Trainers</h1>
+        <p>Learn from experienced professionals who specialize in practical, industry-ready skills.</p>
+    </header>
+    <main class="container">
+        <div class="trainer-grid">
+            {% for t in trainers %}
+            <article class="trainer-card">
+                <div class="trainer-top"></div>
+                <div class="avatar">
+                    {% if t.image %}
+                    <img src="{{ t.image.url }}" alt="{{ t.full_name }}">
+                    {% else %}
+                    {{ t.first_name|first|upper }}
+                    {% endif %}
+                </div>
+                <div class="trainer-body">
+                    <h2>{{ t.full_name }}</h2>
+                    <div class="expertise">{{ t.expertise }}</div>
+                    <a class="email" href="mailto:{{ t.email }}">{{ t.email }}</a>
+                </div>
+            </article>
+            {% empty %}
+            <div class="empty">No trainers are registered yet.</div>
+            {% endfor %}
+        </div>
+    </main>
+    <footer>&copy; {% now "Y" %} Training Portal</footer>
 </body>
 </html>

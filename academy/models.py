@@ -18,7 +18,7 @@ class Trainer(models.Model):
     last_name=models.CharField(max_length=100)
     email=models.EmailField(unique=True)
     expertise=models.CharField(max_length=100)
-    # trainer=photo
+    image=models.ImageField(upload_to='trainers/',blank=True,null=True)
 
     def __str__(self):
         return f"{self.first_name}.{self.last_name}"
@@ -32,9 +32,13 @@ class Student(models.Model):
     first_name=models.CharField(max_length=100)
     last_name=models.CharField(max_length=100)
     email=models.EmailField(unique=True)
+    image=models.ImageField(upload_to='students/',blank=True,null=True)
     is_active=models.BooleanField(default=True)
     enrolled_courese=models.ForeignKey(Course,on_delete=models.SET_NULL,null=True)
     trainer=models.ForeignKey(Trainer,on_delete=models.SET_NULL,null=True)
+
+    def full_name(self):
+                return f"{self.first_name} {self.last_name}"
     
 
 

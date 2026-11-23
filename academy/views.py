@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Course,Trainer
+from .models import Course,Trainer,Student
 
 # Create your views here.
 
@@ -18,5 +18,14 @@ def trainer(request):
         'trainers':trainers
     }
     return render(request,'trainers.html',context)
+
+def student(request):
+    students=Student.objects.all()
+    context={
+        'students':students
+    }
+    return render(request,'students.html',context)
+
+
 
  
